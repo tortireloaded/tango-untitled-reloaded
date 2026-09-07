@@ -70,6 +70,32 @@ const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.
     </div>
   </section>
 
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">From the Studio</p>
+      <h2 class="serif">Following the floor</h2>
+      <p class="text-muted" style="max-width: 50ch;">A living archive of our work — practicas, performances, visiting artists. <a href="https://instagram.com/tango.untitled" rel="me">Follow on Instagram</a>.</p>
+      <div class="reels">
+        <figure class="reel">
+          <iframe src="https://www.instagram.com/reel/DWlHY50gomi/embed/" loading="lazy" allowtransparency="true" allowfullscreen="true" frameborder="0" scrolling="no" title="Studio session · milonga"></iframe>
+          <figcaption class="text-muted">Studio session · milonga</figcaption>
+        </figure>
+        <figure class="reel">
+          <iframe src="https://www.instagram.com/reel/DUxWeNMgrG9/embed/" loading="lazy" allowtransparency="true" allowfullscreen="true" frameborder="0" scrolling="no" title="Workshop with visiting artists"></iframe>
+          <figcaption class="text-muted">Workshop with visiting artists</figcaption>
+        </figure>
+        <figure class="reel">
+          <iframe src="https://www.instagram.com/reel/DUr9T-zgoH7/embed/" loading="lazy" allowtransparency="true" allowfullscreen="true" frameborder="0" scrolling="no" title="Weekend practica · Sheung Wan"></iframe>
+          <figcaption class="text-muted">Weekend practica · Sheung Wan</figcaption>
+        </figure>
+        <figure class="reel">
+          <iframe src="https://www.instagram.com/reel/DVSs_UUCX0R/embed/" loading="lazy" allowtransparency="true" allowfullscreen="true" frameborder="0" scrolling="no" title="Performance · Hong Kong"></iframe>
+          <figcaption class="text-muted">Performance · Hong Kong</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section class="section dark">
     <div class="container narrow center">
       <p class="eyebrow">Begin</p>
@@ -95,4 +121,23 @@ const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.
   }
   .text-muted { color: var(--muted); }
   .center { text-align: center; }
+
+  .reels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .reel { margin: 0; }
+  .reel iframe {
+    aspect-ratio: 9 / 16;
+    background: var(--ink-soft);
+    border: 0;
+    width: 100%;
+    display: block;
+  }
+  .reel figcaption {
+    margin-top: .5rem;
+    font-size: .85rem;
+  }
 </style>
