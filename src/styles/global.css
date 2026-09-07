@@ -1,0 +1,287 @@
+/* ──────────────────────────────────────────────────────────────
+   Tango Untitled · Design Tokens & Base Styles
+   System fonts only · WCAG AA contrast · Mobile-first
+   ────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Color */
+  --ink: #0e0e10;
+  --ink-soft: #2a2a2e;
+  --paper: #fafaf7;
+  --paper-soft: #f5f5f1;
+  --line: #e5e3dd;
+  --muted: #6e6e72;
+  --muted-soft: #8e8e92;
+  --accent: #b3462e;     /* warm red — tango, but not orange */
+  --accent-soft: #d97757;
+  --ok: #2e7d4f;
+  --warn: #b8860b;
+
+  /* Type — system stack, no external fonts */
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, "PingFang HK", "Microsoft JhengHei", "Hiragino Sans GB", sans-serif;
+  --serif: "Iowan Old Style", "Apple Garamond", Georgia, "Times New Roman", "Songti SC", "Noto Serif CJK TC", serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Spacing scale */
+  --s-1: .25rem;
+  --s-2: .5rem;
+  --s-3: .75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+
+  /* Layout */
+  --container: 1100px;
+  --container-narrow: 720px;
+  --header-h: 68px;
+
+  /* Radius + shadow */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.04);
+  --shadow-2: 0 8px 24px rgba(0,0,0,.08);
+
+  /* Motion */
+  --ease: cubic-bezier(.2,.8,.2,1);
+}
+
+/* ───── Reset ───── */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; }
+body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd { margin: 0; }
+ul, ol { padding: 0; margin: 0; }
+img, picture, svg, video { max-width: 100%; height: auto; display: block; }
+button { font: inherit; cursor: pointer; }
+a { color: inherit; }
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+body {
+  min-height: 100vh;
+  font-feature-settings: "kern", "liga", "calt";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ───── Skip link ───── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  padding: .6rem 1rem;
+  border-radius: var(--r-md);
+  text-decoration: none;
+  z-index: 999;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ───── Container ───── */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-inline: 1.25rem;
+}
+.container.narrow { max-width: var(--container-narrow); }
+
+/* ───── Typography ───── */
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+h3 { font-size: clamp(1.3rem, 2.2vw, 1.6rem); }
+h4 { font-size: clamp(1.05rem, 1.6vw, 1.2rem); }
+
+.serif { font-family: var(--serif); }
+
+p { font-size: 1rem; line-height: 1.65; color: var(--ink-soft); }
+p + p { margin-top: var(--s-4); }
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color .15s var(--ease);
+}
+a:hover { text-decoration-color: var(--accent); }
+
+ul, ol { padding-left: 1.2em; }
+li + li { margin-top: var(--s-2); }
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: .78rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--s-3);
+}
+
+blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  border-left: 3px solid var(--accent);
+  padding-left: var(--s-5);
+  color: var(--ink);
+  margin: var(--s-6) 0;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: .92em;
+  background: var(--paper-soft);
+  padding: .15em .35em;
+  border-radius: var(--r-sm);
+}
+
+/* Bilingual blocks — used when content has both EN and ZH side-by-side */
+[lang="zh-Hant"] {
+  font-family: var(--serif);
+}
+
+/* ───── Buttons ───── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .75rem 1.4rem;
+  border: 1px solid var(--ink);
+  border-radius: var(--r-md);
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform .15s var(--ease), background .15s var(--ease);
+}
+.btn:hover { transform: translateY(-1px); background: var(--ink-soft); }
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+}
+.btn.ghost:hover { background: var(--ink); color: var(--paper); }
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ───── Sections ───── */
+.section {
+  padding-block: var(--s-8);
+}
+.section.soft { background: var(--paper-soft); }
+.section.dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+.section.dark p { color: rgba(250,250,247,.78); }
+.section.dark h1, .section.dark h2, .section.dark h3, .section.dark h4 { color: var(--paper); }
+
+/* ───── Cards / grids ───── */
+.grid {
+  display: grid;
+  gap: var(--s-5);
+}
+.cards {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.card h3 { margin-top: 0; }
+.card p { font-size: .95rem; }
+
+/* ───── Hero ───── */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(.55) saturate(1.1);
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(14,14,16,.85) 0%, rgba(14,14,16,.45) 60%, rgba(14,14,16,.85) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-block: var(--s-8);
+}
+.hero h1 { max-width: 16ch; }
+.hero h1 em { color: #f0e9d9; font-style: italic; }
+.hero-sub {
+  max-width: 38ch;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.6;
+  margin-bottom: var(--s-6);
+  color: rgba(250,250,247,.92);
+}
+.hero-ctas { display: flex; flex-wrap: wrap; gap: var(--s-4); align-items: center; }
+.hero .btn { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.hero .btn:hover { background: rgba(250,250,247,.85); }
+
+/* ───── Tables (fees page) ───── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--s-5) 0;
+}
+th, td {
+  text-align: left;
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--line);
+}
+th {
+  font-weight: 600;
+  background: var(--paper-soft);
+}
+
+/* ───── Focus / accessibility ───── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ───── Print ───── */
+@media print {
+  .site-header, .site-footer, .tuncb { display: none !important; }
+  body { background: white; color: black; }
+}

@@ -1,0 +1,78 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { buildLink } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const team = await getCollection('team');
+  return team.map(t => ({
+    params: { slug: t.data.slug },
+    props: { entry: t },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  title={entry.data.name}
+  description={entry.data.summary}
+  current="about"
+  jsonLdType="team"
+  jsonLdData={{ name: entry.data.name }}
+>
+  <section class="page-head">
+    <div class="container narrow">
+      <p class="eyebrow"><a href={buildLink('/about-us/')}>← About Tango Untitled</a></p>
+      <p class="role">{entry.data.role}</p>
+      <h1 class="serif">{entry.data.name}</h1>
+      <p class="lead">{entry.data.summary}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <article class="prose">
+        <Content />
+      </article>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container narrow center">
+      <h2 class="serif">More about the team</h2>
+      <p><a href={buildLink('/about-us/')}>← Back to all teachers</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { padding-block: var(--s-8) var(--s-5); }
+  .role {
+    font-family: var(--sans);
+    color: var(--muted);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    font-size: .78rem;
+    margin-top: 1.5rem;
+  }
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-top: 1rem;
+  }
+  .prose :global(h3) {
+    margin-top: var(--s-7);
+    margin-bottom: var(--s-3);
+  }
+  .prose :global(p) {
+    margin-bottom: var(--s-4);
+  }
+  .prose :global(em) {
+    color: var(--muted);
+    font-style: italic;
+  }
+  .center { text-align: center; }
+</style>

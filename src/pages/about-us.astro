@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import eugeneCor from '../assets/images/eugene-cor.jpg';
+import { buildLink } from '../lib/site';
+
+const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+const eugeneCorEntry = team.find(t => t.id.includes('eugene-cor'))!;
+---
+
+<BaseLayout
+  title="About Tango Untitled"
+  description="Tango Untitled is a teaching and performing collective based in Hong Kong. Founded by Eugene and Cor, we offer classes, practicas and workshops with an emphasis on clear fundamentals, musical understanding, and communication through the embrace."
+  current="about"
+>
+  <section class="hero">
+    <Image src={eugeneCor} alt="Eugene and Cor, founders of Tango Untitled" class="hero-bg" loading="eager" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <h1>About Tango Untitled</h1>
+      <p class="hero-sub">Argentine Tango · Teaching · Performance · Hong Kong</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <p class="eyebrow">Our belief</p>
+      <h2 class="serif">Your tango is waiting to be shaped by your voice within the embrace.</h2>
+      <p>Tango Untitled is named for a belief we hold close: that tango is an untitled canvas — open, evolving and shaped by each dancer's voice within the embrace.</p>
+      <p>Founded by Eugene and Cor, the collective brings together a community of teachers, performers, and students who share a deep respect for tango as culture and as a living practice. We hold space for beginners and experienced dancers alike, believing that the journey matters more than the destination.</p>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <p class="eyebrow">The team</p>
+      <h2 class="serif" style="margin-bottom: 2rem;">Our teachers & performers</h2>
+      <div class="grid cards">
+        {team.map(t => (
+          <article class="card">
+            <h3>{t.data.name}</h3>
+            <p class="text-muted" style="font-size:.85rem; margin-top:-.5rem;">{t.data.role}</p>
+            <p>{t.data.summary}</p>
+            <a href={buildLink(`/team/${t.data.slug}/`)}>Read more →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="container narrow center">
+      <h2 class="serif">Begin your tango journey.</h2>
+      <p class="text-muted" style="margin: 1rem auto 2rem; max-width: 50ch;">No experience needed. No partner required. Just bring yourself.</p>
+      <a href={buildLink('/classes/learn-to-tango/')} class="btn">Start with Beginners</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .text-muted { color: var(--muted); }
+  .center { text-align: center; }
+</style>

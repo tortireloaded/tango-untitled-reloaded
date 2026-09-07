@@ -1,0 +1,101 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { buildLink } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const classes = await getCollection('classes');
+  return classes.map(c => ({
+    params: { slug: c.id.replace(/\.md$/, '') },
+    props: { entry: c },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.summary}
+  current="classes"
+  jsonLdType="class"
+  jsonLdData={{ name: entry.data.title, description: entry.data.summary, price: entry.data.fee_hkd }}
+>
+  <section class="page-head">
+    <div class="container narrow">
+      <p class="eyebrow"><a href={buildLink('/classes/')}>← All classes</a></p>
+      <p class="hashtag">{entry.data.hashtag} {entry.data.group}</p>
+      <h1 class="serif">{entry.data.title}</h1>
+      {entry.data.title_zh && <p class="title-zh">{entry.data.title_zh}</p>}
+      <p class="lead">{entry.data.summary}</p>
+      <p class="cta-row">
+        <a href={buildLink('/book/')} class="btn">Book this Class</a>
+        {entry.data.fee_hkd && <span class="fee">HKD {entry.data.fee_hkd} / {entry.data.duration_min} min</span>}
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <article class="prose">
+        <Content />
+      </article>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="container narrow center">
+      <p style="font-size:1rem; color:rgba(250,250,247,.85);">Try this class with <strong>HKD 100 off</strong> using code <code style="background:rgba(250,250,247,.15); color:var(--paper);">BBTRIALCLASS</code>.</p>
+      <a href={buildLink('/book/')} class="btn" style="margin-top:1.5rem;">Book a Class</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { padding-block: var(--s-8) var(--s-5); }
+  .hashtag {
+    font-family: var(--sans);
+    color: var(--accent);
+    letter-spacing: .15em;
+    margin-top: 1.5rem;
+    font-weight: 500;
+  }
+  .title-zh {
+    font-family: var(--serif);
+    color: var(--muted);
+    font-size: 1.1rem;
+    margin-top: .25rem;
+  }
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-top: 1rem;
+  }
+  .cta-row {
+    display: flex;
+    gap: var(--s-4);
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: var(--s-5);
+  }
+  .fee {
+    color: var(--muted);
+    font-size: .95rem;
+  }
+  .prose :global(h2) {
+    margin-top: var(--s-7);
+    margin-bottom: var(--s-3);
+  }
+  .prose :global(p) {
+    margin-bottom: var(--s-4);
+  }
+  .prose :global(blockquote) {
+    margin: var(--s-6) 0;
+  }
+  .prose :global(strong) {
+    color: var(--ink);
+  }
+  .center { text-align: center; }
+</style>

@@ -1,0 +1,26 @@
+# ──────────────────────────────────────────────────────────────
+# Tango Untitled · URL redirects
+# Old Squarespace slugs → new clean URLs (301 permanent)
+# ──────────────────────────────────────────────────────────────
+
+# Folder aliases
+/about                    /about-us/                    301
+/class                    /classes/learn-to-tango/       301
+/home                     /                              301
+
+# Class detail pages
+/learn-to-tango           /classes/learn-to-tango/       301
+/all-level-class          /classes/all-level/            301
+/themed-topic             /classes/themed-topic/         301
+/body-conditioning        /classes/lady-tech/            301
+/fees-and-terms           /classes/fees-and-terms/       301
+
+# Other pages
+/practica-corchacha       /practica/                     301
+/schedule                 /book/                         301
+
+# Team pages
+/meet-the-team-eugene-cor          /team/eugene-cor/         301
+/meet-the-team-christine-jeffrey   /team/christine-jeffrey/  301
+/meet-the-team-nelle-brandy        /team/nelle-brandy/       301
+/meet-the-team-joyce               /team/joyce/              301

@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Untitled"
+  description="The page you're looking for has wandered off the dance floor."
+>
+  <section class="page-head">
+    <div class="container narrow center">
+      <p class="eyebrow">404</p>
+      <h1 class="serif" style="font-size: clamp(3rem, 8vw, 6rem);">Untitled.</h1>
+      <p class="lead">The page you're looking for has wandered off the dance floor.</p>
+      <p style="margin-top: var(--s-6);">
+        <a href="/" class="btn">Return Home</a>
+        <a href="/classes/" class="btn ghost" style="margin-left: .75rem;">Browse Classes</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding-block: var(--s-9);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-top: 1.5rem;
+  }
+  .center { text-align: center; }
+</style>

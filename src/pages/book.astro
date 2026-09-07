@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Book a Class"
+  description="Book your tango class online — single sessions, monthly packs, and trial offers. Beginners welcome, no partner required."
+  current=""
+>
+  <section class="page-head">
+    <div class="container narrow">
+      <p class="eyebrow">Book a Class</p>
+      <h1 class="serif">Step onto the floor.</h1>
+      <p class="lead">Pick a class from the schedule below — single sessions, monthly packs, or a discounted trial.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="coupon">
+        <strong>New student?</strong> Use coupon code <code>BBTRIALCLASS</code> at checkout for <strong>HKD 100 off</strong> your first beginner class. Valid for single-class and monthly-pack bookings.
+      </div>
+
+      <div class="acuity-embed">
+        <iframe
+          src="https://app.acuityscheduling.com/schedule.php?owner=29640679&template=class"
+          title="Book a class — Acuity Scheduling"
+          width="100%"
+          height="900"
+          frameborder="0"
+          loading="lazy"
+          style="background: var(--paper-soft); border-radius: 14px;"
+        ></iframe>
+      </div>
+
+      <p class="muted" style="text-align:center; margin-top: 1.5rem;">
+        Trouble booking? Email <a href="mailto:tango.untitled@gmail.com">tango.untitled@gmail.com</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container narrow">
+      <h2 class="serif">Booking terms</h2>
+      <ul>
+        <li>Once booked, the class is non-refundable and non-transferable. No refunds for unused or partially used classes.</li>
+        <li>You may reschedule to another session of the same level within the same calendar month up to 24 hours before the original class time (subject to availability).</li>
+        <li>If you miss the reschedule window and fail to attend, the class will be forfeited.</li>
+        <li>Please read the full terms and conditions on the booking page.</li>
+      </ul>
+      <h3 class="serif" style="margin-top: var(--s-6);">Weather policy</h3>
+      <p>Your safety comes first. Classes will be cancelled if either a Black Rainstorm Warning or a Typhoon Signal No. 8 or above is in effect, expected, or not lowered two hours before class time. If a class is cancelled, a make-up session will be arranged. If you're unable to join, a refund will be provided.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { padding-block: var(--s-8) var(--s-5); }
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-top: 1rem;
+  }
+  .coupon {
+    background: var(--paper-soft);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    margin-bottom: var(--s-5);
+    line-height: 1.6;
+  }
+  .coupon code {
+    font-size: 1rem;
+    background: var(--paper);
+  }
+  .acuity-embed {
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-1);
+  }
+  .muted { color: var(--muted); font-size: .9rem; }
+  h3 { font-size: 1.2rem; }
+</style>

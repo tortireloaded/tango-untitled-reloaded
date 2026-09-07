@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { buildLink } from '../../lib/site';
+
+const classes = (await getCollection('classes')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Classes"
+  description="Weekly tango classes for every level — beginner, all-level, themed topic, and body conditioning. With partner rotation and bilingual instruction."
+  current="classes"
+>
+  <section class="page-head">
+    <div class="container narrow">
+      <p class="eyebrow">Our classes</p>
+      <h1 class="serif">Find your rhythm.</h1>
+      <p>Weekly tango classes for every stage of your journey — from absolute beginner to advanced refinement. All classes feature partner rotation, so you don't need to bring one. We teach in English with Chinese support.</p>
+      <p style="margin-top:1rem; padding: 1rem 1.25rem; background: var(--paper-soft); border-left: 3px solid var(--accent); border-radius: 4px;">
+        <strong>New student?</strong> Use coupon code <code>BBTRIALCLASS</code> for HKD 100 off your first beginner class (valid for single class and monthly pack).
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid cards">
+        {classes.map(c => (
+          <article class="card">
+            <span class="eyebrow" style="color:var(--accent);">{c.data.hashtag} {c.data.group}</span>
+            <h3>{c.data.title}</h3>
+            {c.data.title_zh && <p class="zh-title-small">{c.data.title_zh}</p>}
+            <p>{c.data.summary}</p>
+            <p class="meta">
+              {c.data.fee_hkd && <span>HKD {c.data.fee_hkd} / {c.data.duration_min} min</span>}
+              {c.data.dress_code && <span class="dress">Dress: {c.data.dress_code}</span>}
+            </p>
+            <a href={buildLink(`/classes/${c.id.replace(/\.md$/,'')}/`)} class="btn ghost" style="margin-top:.5rem; align-self:flex-start;">Learn more →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container narrow">
+      <p class="eyebrow">Pricing & terms</p>
+      <h2 class="serif" style="margin-bottom:1rem;">勤學獎勵 — the diligent learner reward.</h2>
+      <p>We've chosen not to offer package booking because our class schedule can be irregular, and we don't wish to hold your prepayment. Instead, we'd like to recognise hardworking students and encourage attendance through the <strong>勤學獎勵</strong>.</p>
+      <p>If you attended all classes in the same level in the previous calendar month, you'll receive <strong>10% off</strong> when booking the same level classes in the following month.</p>
+      <p><a href={buildLink('/classes/fees-and-terms/')}>Read full fees and terms →</a></p>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="container narrow center">
+      <h2 class="serif">Ready to step on the floor?</h2>
+      <p class="text-muted" style="margin: 1rem auto 2rem;">Browse the schedule and book your first class.</p>
+      <a href={buildLink('/book/')} class="btn">Book a Class</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { padding-block: var(--s-8) var(--s-5); }
+  .zh-title-small {
+    font-family: var(--serif);
+    color: var(--muted);
+    font-size: .95rem;
+    margin-top: -.5rem;
+    margin-bottom: .5rem;
+  }
+  .meta {
+    font-size: .85rem;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+  }
+  .dress { font-style: italic; }
+  .text-muted { color: var(--muted); }
+  .center { text-align: center; }
+</style>

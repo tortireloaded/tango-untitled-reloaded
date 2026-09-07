@@ -1,0 +1,148 @@
+---
+import { buildLink, SITE_NAME_EN, SITE_NAME_ZH, CONTACT_EMAIL } from '../lib/site';
+
+interface Props {
+  current?: string;  // active page key
+}
+
+const { current = '' } = Astro.props;
+
+const nav = [
+  { href: '/',           label: 'Home',      key: 'home' },
+  { href: '/about-us/',  label: 'About',     key: 'about' },
+  { href: '/classes/',   label: 'Classes',   key: 'classes' },
+  { href: '/practica/',  label: 'Practica',  key: 'practica' },
+  { href: '/location/',  label: 'Location',  key: 'location' },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href={buildLink('/')} class="brand" aria-label={`${SITE_NAME_EN} home`}>
+      <span class="brand-en">{SITE_NAME_EN}</span>
+      <span class="brand-zh">{SITE_NAME_ZH}</span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        {nav.map(item => (
+          <li>
+            <a
+              href={buildLink(item.href)}
+              class={current === item.key ? 'is-current' : ''}
+              aria-current={current === item.key ? 'page' : undefined}
+            >{item.label}</a>
+          </li>
+        ))}
+      </ul>
+      <a href={buildLink('/book/')} class="btn book-btn">Book a Class</a>
+    </nav>
+
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false" id="menuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav" hidden>
+    <ul>
+      {nav.map(item => (
+        <li><a href={buildLink(item.href)}>{item.label}</a></li>
+      ))}
+      <li><a href={buildLink('/book/')} class="btn" style="margin-top:1rem;display:inline-block">Book a Class</a></li>
+      <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
+    </ul>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-h);
+    gap: var(--s-4);
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand-en {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .brand-zh {
+    font-family: var(--serif);
+    font-size: .75rem;
+    letter-spacing: .35em;
+    color: var(--muted);
+    margin-top: .1rem;
+  }
+
+  .primary-nav { display: flex; align-items: center; gap: var(--s-5); }
+  .primary-nav ul { list-style: none; display: flex; gap: var(--s-5); }
+  .primary-nav a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: .95rem;
+    padding: .25rem 0;
+    border-bottom: 1px solid transparent;
+  }
+  .primary-nav a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .primary-nav a.is-current { color: var(--ink); border-bottom-color: var(--accent); }
+  .book-btn { font-size: .9rem; padding: .55rem 1rem; }
+
+  .menu-btn {
+    display: none;
+    background: none;
+    border: 0;
+    width: 40px; height: 40px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 0;
+  }
+  .menu-btn span {
+    display: block;
+    width: 24px; height: 1.5px;
+    background: var(--ink);
+    margin: 0 auto;
+    transition: transform .2s var(--ease);
+  }
+
+  .mobile-nav {
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    padding: var(--s-4) 1.25rem;
+  }
+  .mobile-nav ul { list-style: none; padding: 0; }
+  .mobile-nav li + li { margin-top: var(--s-3); }
+  .mobile-nav a { text-decoration: none; color: var(--ink); font-size: 1.05rem; }
+
+  @media (max-width: 720px) {
+    .primary-nav { display: none; }
+    .menu-btn { display: flex; }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('menuBtn');
+  const nav = document.getElementById('mobileNav');
+  btn?.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    nav?.toggleAttribute('hidden', expanded);
+  });
+</script>

@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { buildLink } from '../lib/site';
+---
+
+<BaseLayout
+  title="Practica Corchacha"
+  description="Pure practice. Basic drills, walking exercises, and open floor time with Eugene and Cor. Sundays at Dance Concept, Wan Chai."
+  current="practica"
+>
+  <section class="page-head">
+    <div class="container narrow">
+      <p class="eyebrow">Practica</p>
+      <h1 class="serif">Practica Corchacha</h1>
+      <p class="lead">We believe that basic technique and body awareness are fundamental to allowing one to dance freely with your soul & heart, express music and ultimately pour your focus onto your partner.</p>
+      <p>We started Practica Corchacha and would like to invite those who are fond of basic exercises to join us.</p>
+      <p class="hashtag-row">
+        <span>#Not a milonga</span>
+        <span>#Not even a practilonga</span>
+        <span>#Pure practice</span>
+        <span>#Not a relaxing time</span>
+      </p>
+      <p class="zh-tag">#個Group名代表咗我哋對Practice嘅決心</p>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container narrow">
+      <h2 class="serif">The session</h2>
+
+      <h3>Part 1 (45 mins) — Basic Drills and Walking Practice with Eugene and Cor</h3>
+      <p>We will share our regular drills in part 1. Yes, that involves repetitive and very basic exercises. We are serious about practice, if you would like to join Part 1, you are expected to join all exercises and not taking a rest on the side.</p>
+      <p><em>Note: Please wear pants and bring socks.</em></p>
+
+      <h3>Part 2 (2 hours 15 mins) — Open Practice</h3>
+      <p>Part 2 will be open practice time for you to focus on your practice plan. No guided practice in between. We are happy to share our thoughts with you if you run out of practice ideas.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2 class="serif">Practical</h2>
+      <ul class="meta-list">
+        <li><strong>Venue:</strong> Dance Concept, 7/F, Great Smart Tower, 230 Wanchai Road, Wan Chai, Hong Kong</li>
+        <li><strong>Entrance:</strong> HKD 100 (collected at the door)</li>
+        <li><strong>Registration:</strong> No pre-registration required</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container narrow">
+      <h2 class="serif">House rules</h2>
+      <ul>
+        <li>This is a pure practice — please note that no drinks and snacks will be provided.</li>
+        <li>We shall comply with any studio rules and policies as required by the venue management.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="container narrow center">
+      <p>See the latest schedule and join us.</p>
+      <a href="https://tangountitled.as.me/tangountitled" class="btn" rel="noopener">Check schedule</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { padding-block: var(--s-8) var(--s-5); }
+  .hashtag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem 1.5rem;
+    margin-top: var(--s-5);
+    color: var(--accent);
+    font-size: .9rem;
+    letter-spacing: .02em;
+  }
+  .zh-tag {
+    font-family: var(--serif);
+    color: var(--muted);
+    margin-top: .5rem;
+  }
+  h3 { margin-top: var(--s-5); }
+  .meta-list {
+    list-style: none;
+    padding: 0;
+  }
+  .meta-list li + li { margin-top: .75rem; }
+  .center { text-align: center; }
+</style>

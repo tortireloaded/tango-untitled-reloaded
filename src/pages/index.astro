@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import homeCover from '../assets/images/home-cover.jpg';
+import { buildLink } from '../lib/site';
+
+const classes = (await getCollection('classes')).sort((a, b) => a.data.order - b.data.order);
+const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Tango Untitled · 無題探戈"
+  description="Argentine Tango collective in Hong Kong offering classes for beginners and dancers of all levels, practicas, workshops, and duo/ensemble stage work with appearances across Hong Kong and overseas."
+  current="home"
+  jsonLdType="home"
+>
+  <section class="hero">
+    <Image src={homeCover} alt="Tango Untitled — Argentine Tango in Hong Kong" class="hero-bg" loading="eager" fetchpriority="high" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <p class="zh-title eyebrow" style="color:rgba(250,250,247,.7); letter-spacing:.5em;">無 題 探 戈</p>
+      <h1>Discover <em>Argentine tango</em> — a language of <em>movement</em> and <em>connection</em>.</h1>
+      <p class="hero-sub">Immerse yourself in its dance and music, through classes, practicas and workshops with <strong>Tango Untitled</strong>, right here in Hong Kong.</p>
+      <div class="hero-ctas">
+        <a href={buildLink('/classes/learn-to-tango/')} class="btn ghost">Start with Beginners</a>
+        <a href={buildLink('/classes/')} class="ghost-link">Explore Our Classes →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <p class="eyebrow">About the Studio</p>
+      <h2 class="serif">Learn, practise, and explore Argentine Tango.</h2>
+      <p><strong>Tango Untitled</strong> is a teaching and performing collective based in Hong Kong. We offer classes, practicas and workshops with an emphasis on clear fundamentals, musical understanding, and communication through the embrace.</p>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <p class="eyebrow">What we offer</p>
+      <div class="grid cards">
+        {classes.map(c => (
+          <article class="card">
+            <span class="eyebrow" style="color:var(--accent); letter-spacing:.15em;">{c.data.hashtag}</span>
+            <h3>{c.data.title}</h3>
+            <p>{c.data.summary}</p>
+            <a href={buildLink(`/classes/${c.id.replace(/\.md$/,'')}/`)} style="margin-top:.5rem;">Learn more →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Our teachers</p>
+      <h2 class="serif" style="margin-bottom: 2rem;">The voices behind the music</h2>
+      <div class="grid cards">
+        {team.map(t => (
+          <article class="card">
+            <h3>{t.data.name}</h3>
+            <p class="text-muted" style="font-size:.85rem; margin-top:-.5rem;">{t.data.role}</p>
+            <p>{t.data.summary}</p>
+            <a href={buildLink(`/team/${t.data.slug}/`)}>Read more →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="container narrow center">
+      <p class="eyebrow">Begin</p>
+      <h2 class="serif">Your tango is waiting to be shaped by you.</h2>
+      <p class="text-muted" style="margin: 1rem auto 2rem; max-width: 50ch;">We invite you to develop your dance through practice, curiosity and your own voice within the embrace.</p>
+      <a href={buildLink('/book/')} class="btn">Book a Class</a>
+      <p style="margin-top:1rem; font-size:.9rem; color:rgba(250,250,247,.7);">Use code <strong>BBTRIALCLASS</strong> for HKD 100 off your first beginner class.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ghost-link {
+    color: var(--paper);
+    border-bottom: 1px solid rgba(250,250,247,.4);
+    padding-bottom: .2rem;
+  }
+  .ghost-link:hover { border-bottom-color: var(--paper); }
+  .zh-title {
+    font-family: var(--serif);
+    margin: 0 0 1.5rem;
+    font-size: 1.05rem;
+  }
+  .text-muted { color: var(--muted); }
+  .center { text-align: center; }
+</style>

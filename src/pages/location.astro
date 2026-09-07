@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { STUDIO_ADDRESS } from '../lib/site';
+---
+
+<BaseLayout
+  title="Find Us"
+  description="Tango Untitled group class studio at 18/F, 361 Queen's Road Central, Nan Dao Commercial Building, Sheung Wan, Hong Kong. Two-minute walk from Sheung Wan MTR Exit A2."
+  current="location"
+  jsonLdType="location"
+>
+  <section class="page-head">
+    <div class="container narrow">
+      <p class="eyebrow">Group Class Location</p>
+      <h1 class="serif">Sheung Wan Studio</h1>
+      <p class="lead">Find us in the heart of Sheung Wan.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="address-card">
+        <h2 class="serif">Address</h2>
+        <p class="addr">
+          18/F, 361 Queen's Road Central<br />
+          Nan Dao Commercial Building<br />
+          Sheung Wan, Hong Kong
+        </p>
+        <p class="muted">港鐵上環站 A2 出口步行 2 分鐘 · Sheung Wan MTR Exit A2 · 2 min walk</p>
+        <p style="margin-top:1.5rem;">
+          <a href="https://www.google.com/maps/search/?api=1&query=18%2FF+361+Queen's+Road+Central+Hong+Kong" rel="noopener" target="_blank" class="btn ghost">Open in Google Maps →</a>
+        </p>
+      </div>
+
+      <div class="map-embed">
+        <iframe
+          title="Tango Untitled studio on map"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=114.1455%2C22.2820%2C114.1585%2C22.2890&amp;layer=mapnik&amp;marker=22.2855%2C114.1522"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          style="border: 0; width: 100%; height: 100%; min-height: 420px;"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container narrow">
+      <h2 class="serif">When you arrive</h2>
+      <ul>
+        <li>Take the lift to 18/F. The studio entrance is on your left as you exit the lift.</li>
+        <li>Please arrive 10-15 minutes before class to change shoes and settle in.</li>
+        <li>Leather sole shoes are required for tango. Socks are fine for absolute first lessons.</li>
+        <li>Changing rooms and a small rest area are available.</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { padding-block: var(--s-8) var(--s-5); }
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-top: 1rem;
+  }
+  .address-card {
+    margin-bottom: var(--s-6);
+  }
+  .addr {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-top: var(--s-3);
+  }
+  .muted { color: var(--muted); }
+  .map-embed {
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-2);
+    border: 1px solid var(--line);
+  }
+</style>

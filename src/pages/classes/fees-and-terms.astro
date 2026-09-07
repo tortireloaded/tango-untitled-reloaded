@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Group Class Fees and Terms"
+  description="Tango Untitled group class fees — HKD 220 for beginners, HKD 240 for all-level and themed. 勤學獎勵 scheme. Practice session and weather policy."
+  current="classes"
+>
+  <section class="page-head">
+    <div class="container narrow">
+      <p class="eyebrow"><a href="/classes/">← All classes</a></p>
+      <h1 class="serif">Group Class — Fees & Terms</h1>
+      <p class="lead">Embark on your tango journey with Tango Untitled.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2 class="serif">Class Booking</h2>
+      <ul>
+        <li>You may book your class via our <a href="/book/">scheduling page</a>.</li>
+        <li>Once booked, the class is non-refundable and non-transferable. No refunds for unused or partially used classes.</li>
+        <li>You may reschedule to another session of the same level within the same calendar month up to 24 hours before the original class time (subject to availability).</li>
+        <li>If you miss the reschedule window and fail to attend, the class will be forfeited.</li>
+        <li>Please read the full terms and conditions on the booking page.</li>
+      </ul>
+
+      <h2 class="serif" style="margin-top: var(--s-7);">Fee per session</h2>
+      <table>
+        <thead>
+          <tr><th>Class (60 mins)</th><th>Single Session</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Beginners</td><td>HKD 220</td></tr>
+          <tr><td>All-level / Themed Topic</td><td>HKD 240</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container narrow">
+      <h2 class="serif">勤學獎勵 — the diligent learner reward</h2>
+      <p>We've chosen not to offer package booking because our class schedule can be irregular, and we don't wish to hold your prepayment. Instead, we'd like to recognise hardworking students and encourage attendance through the <strong>勤學獎勵</strong>.</p>
+      <p>If you attended all classes in the same level in the previous calendar month, you'll receive <strong>10% off</strong> when booking the same level classes in the following month.</p>
+      <p><strong>Example:</strong> If you attended all Beginner classes in June, you will be eligible for 勤學獎勵 (10% off) when booking Beginner classes in July.</p>
+      <p><strong>How to redeem:</strong> The discount code will be shared with eligible classmates. Enter the discount code when booking and the system will automatically apply the discount.</p>
+      <p><strong>Important note:</strong> To keep the system simple and fair to everyone, eligibility for the 勤學獎勵 is based solely on full attendance in the same level in the previous calendar month. No exceptions to be made. If you are away for work, or unable to attend due to illness or injury, the 勤學獎勵 will not apply.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <h2 class="serif">Practice Session</h2>
+      <p>Complement your learning with optional practice sessions (60 mins) before or after class, if available.</p>
+      <table>
+        <thead>
+          <tr><th>60 mins session</th><th>Single Booking</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Practice</td><td>HKD 90</td></tr>
+        </tbody>
+      </table>
+      <p>Please read full terms and conditions on the booking page.</p>
+      <p>To support recent Beginner students in consolidating their foundation, BB+ Practice is available via special registration for eligible students (24+ Beginner classes attended in the last 12 months at Tango Untitled). Eligible students may contact us for the booking link, which allows you to book the Sat BB practice session (HKD 90) and also attend the Beginner class. Special 勤學獎勵 does not apply to this special registration. Booking is subject to overall capacity and attendance will be monitored. Frequent last-minute cancellations and/or late arrival may result in loss of access to this special registration.</p>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container narrow">
+      <h2 class="serif">Weather Policy</h2>
+      <p>Your safety comes first.</p>
+      <p>Classes will be cancelled if either a Black Rainstorm Warning or a Typhoon Signal No. 8 or above is in effect, expected, or not lowered two hours before class time.</p>
+      <p>When weather is uncertain, please consider road and traffic conditions before coming to class.</p>
+      <p>If a class is cancelled, a make-up session will be arranged. If you're unable to join, a refund will be provided.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { padding-block: var(--s-8) var(--s-5); }
+  .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-top: 1rem;
+  }
+  h2 { margin-top: var(--s-6); }
+  table { margin-top: var(--s-3); }
+</style>
