@@ -48,7 +48,7 @@ const nav = [
       {nav.map(item => (
         <li><a href={buildLink(item.href)}>{item.label}</a></li>
       ))}
-      <li><a href={buildLink('/book/')} class="btn" style="margin-top:1rem;display:inline-block">Book a Class</a></li>
+      <li><a href={buildLink('/book/')} class="btn book-btn" style="margin-top:1rem;display:inline-block">Book a Class</a></li>
       <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
     </ul>
   </div>
@@ -101,8 +101,24 @@ const nav = [
     border-bottom: 1px solid transparent;
   }
   .primary-nav a:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .primary-nav a.is-current { color: var(--ink); border-bottom-color: var(--accent); }
-  .book-btn { font-size: .9rem; padding: .55rem 1rem; }
+  .primary-nav a.is-current {
+    color: var(--ink);
+    /* inset shadow gives an underline visual without changing box height,
+       so active link stays aligned with sibling links */
+    box-shadow: inset 0 -1px 0 var(--accent);
+    border-bottom-color: transparent;
+  }
+  .book-btn {
+    font-size: .9rem;
+    padding: .55rem 1rem;
+    background: var(--accent);
+    color: var(--paper);
+    border-color: var(--accent);
+  }
+  .book-btn:hover {
+    background: #963a25;
+    border-color: #963a25;
+  }
 
   .menu-btn {
     display: none;
