@@ -9,14 +9,16 @@
 
 ## Final Lighthouse Scores
 
-| Category       | Score  | Brief target |
-|----------------|--------|--------------|
-| Performance    | 99/100 | ≥90 ✓        |
-| Accessibility  | 100/100 | ≥90 ✓        |
-| Best Practices | 100/100 | ≥90 ✓        |
-| SEO            | 100/100 | ≥90 ✓        |
+| Category       | Score  | Brief target | After reels |
+|----------------|--------|--------------|-------------|
+| Performance    | 99/100 | ≥90 ✓        | 100/100 ✓   |
+| Accessibility  | 100/100 | ≥90 ✓        | 100/100 ✓   |
+| Best Practices | 100/100 | ≥90 ✓        | 100/100 ✓   |
+| SEO            | 100/100 | ≥90 ✓        | 100/100 ✓   |
 
 Run: `npx lighthouse https://tortireloaded.github.io/tango-untitled-reloaded/ --only-categories=performance,accessibility,best-practices,seo`
+
+**Note on reels:** Adding 4 Instagram iframes (Option A from question set) did NOT lower Lighthouse scores because `loading="lazy"` defers the iframe content until the user scrolls. Lighthouse doesn't scroll, so it sees 0 Instagram requests (5 total, 81 KB transferred). **Real-world performance when scrolling to the section will be slower** — this is a score-vs-experience trade worth knowing.
 
 ---
 
